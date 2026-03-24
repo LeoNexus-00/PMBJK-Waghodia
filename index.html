@@ -792,6 +792,7 @@
               <th style="padding:14px; text-align:left; border-bottom:2px solid var(--green); color:var(--green-dark);">Drug Name</th>
               <th style="padding:14px; text-align:left; border-bottom:2px solid var(--green); color:var(--green-dark); width:150px;">Pack Size</th>
               <th style="padding:14px; text-align:right; border-bottom:2px solid var(--green); color:var(--green-dark); width:120px;">MRP (₹)</th>
+              <th style="padding:14px; text-align:center; border-bottom:2px solid var(--green); color:var(--green-dark); width:90px;">Buy</th>
             </tr>
           </thead>
           <tbody id="category-table-body">
@@ -1200,8 +1201,65 @@
 </a>
 <div class="wa-tooltip">💬 Chat on WhatsApp</div>
 <div class="toast" id="toast">✅ Message sent! Opening WhatsApp now…</div>
+<!-- CART UI & LOGIC -->
+<style>
+  #cart-float {
+    position: fixed; bottom: 30px; right: 30px; background: white; padding: 16px; border-radius: 50%;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.15); cursor: pointer; z-index: 1000; border: 2px solid var(--green);
+    display: flex; align-items: center; justify-content: center; transition: transform 0.2s; display:none;
+  }
+  #cart-float:hover { transform: scale(1.1); }
+  #cart-badge {
+    position: absolute; top: -6px; right: -6px; background: #ef4444; color: white; font-size: 13px; font-weight: bold;
+    width: 24px; height: 24px; border-radius: 50%; display: flex; align-items: center; justify-content: center;
+  }
+  #cart-drawer {
+    position: fixed; top: 0; right: -420px; width: 100%; max-width: 400px; height: 100vh; background: white;
+    box-shadow: -5px 0 25px rgba(0,0,0,0.1); z-index: 1001; transition: right 0.3s ease; display: flex; flex-direction: column;
+    padding: 24px; box-sizing: border-box;
+  }
+  #cart-drawer.open { right: 0; }
+  .cart-item { display:flex; justify-content:space-between; align-items:center; padding:12px 0; border-bottom:1px solid #f5f5f5; }
+  .cart-item-info { flex-grow:1; padding-right:12px; }
+  .cart-item-name { font-weight:600; font-size:14px; margin-bottom:4px; line-height:1.3; color:var(--gray-800); }
+  .cart-item-price { color:var(--gray-600); font-size:13px; }
+  .cart-qty-controls { display:flex; align-items:center; gap:10px; background:#f9fafb; padding:4px 8px; border-radius:20px; border:1px solid #eee; }
+  .cart-qty-btn { background:none; border:none; cursor:pointer; font-weight:bold; color:var(--green); font-size:16px; width:24px; height:24px; display:flex; align-items:center; justify-content:center; }
+  .cart-overlay { position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.4); z-index:999; display:none; opacity:0; transition:opacity 0.3s; }
+  .cart-overlay.open { display:block; opacity:1; }
+</style>
+
+<div id="cart-float" onclick="toggleCartDrawer()">
+  <span style="font-size:26px;">🛒</span>
+  <span id="cart-badge">0</span>
+</div>
+
+<div id="cart-overlay" class="cart-overlay" onclick="toggleCartDrawer()"></div>
+
+<div id="cart-drawer">
+  <div style="display:flex; justify-content:space-between; align-items:center; border-bottom:1px solid #eee; padding-bottom:16px; margin-bottom:16px;">
+    <h3 style="margin:0; font-size:22px; color:var(--gray-800);">🛒 Your Order</h3>
+    <button onclick="toggleCartDrawer()" style="background:none; border:none; font-size:28px; cursor:pointer; color:var(--gray-600);">&times;</button>
+  </div>
+  <div id="cart-items" style="flex-grow:1; overflow-y:auto; margin-bottom:16px;">
+    <!-- Items go here -->
+  </div>
+  <div style="border-top:2px solid #eee; padding-top:16px;">
+    <div style="display:flex; justify-content:space-between; font-size:20px; font-weight:bold; margin-bottom:20px; color:var(--gray-800);">
+      <span>Total Estimate:</span>
+      <span id="cart-total" style="color:var(--green);">₹0.00</span>
+    </div>
+    <button onclick="checkoutWhatsApp()" style="width:100%; padding:16px; background:#25D366; color:white; border:none; border-radius:12px; font-size:16px; font-weight:bold; cursor:pointer; display:flex; justify-content:center; align-items:center; gap:10px; transition:0.2s;" onmouseover="this.style.background='#1ebc59'" onmouseout="this.style.background='#25D366'">
+      <span style="font-size:22px;">💬</span> Place Order via WhatsApp
+    </button>
+    <p style="text-align:center; font-size:12px; color:var(--gray-600); margin-top:12px;">You will review the order on WhatsApp before sending.</p>
+  </div>
+</div>
+
 <script src="products.js"></script>
 <script>
+  let cart = [];
+
   function showCategory(catName) {
     const container = document.getElementById('category-products-container');
     const tbody = document.getElementById('category-table-body');
@@ -1226,11 +1284,16 @@
     title.innerText = displayName + " (" + products.length + " Items)";
     
     let html = "";
-    products.forEach(p => {
+    products.forEach((p, i) => {
+      // Handle missing or NA mrp safely
+      const priceText = p.mrp ? ('₹ ' + parseFloat(p.mrp).toFixed(2)) : 'N/A';
       html += `<tr>
-        <td style="padding:12px; border-bottom:1px solid #eee; text-align:left;">${p.name}</td>
-        <td style="padding:12px; border-bottom:1px solid #eee; text-align:left; color:#666;">${p.uom}</td>
-        <td style="padding:12px; border-bottom:1px solid #eee; text-align:right; font-weight:bold; color:var(--green);">₹ ${p.mrp}</td>
+        <td style="padding:12px; border-bottom:1px solid #eee; text-align:left; color:var(--gray-800); font-weight:500;">${p.name}</td>
+        <td style="padding:12px; border-bottom:1px solid #eee; text-align:left; color:#666; font-size:13px;">${p.uom}</td>
+        <td style="padding:12px; border-bottom:1px solid #eee; text-align:right; font-weight:bold; color:var(--green);">${priceText}</td>
+        <td style="padding:12px; border-bottom:1px solid #eee; text-align:center;">
+          <button onclick="addToCart('${catName}', ${i})" style="background:var(--green);color:white;border:none;padding:8px 14px;border-radius:8px;cursor:pointer;font-size:13px;font-weight:bold;transition:0.2s;box-shadow:0 2px 5px rgba(34,197,94,0.3);" onmouseover="this.style.background='var(--green-dark)'" onmouseout="this.style.background='var(--green)'">+ Add</button>
+        </td>
       </tr>`;
     });
     
@@ -1241,6 +1304,102 @@
     const yOffset = -80; 
     const y = container.getBoundingClientRect().top + window.pageYOffset + yOffset;
     window.scrollTo({top: y, behavior: 'smooth'});
+  }
+
+  function addToCart(catName, index) {
+    const p = PMBI_PRODUCTS[catName][index];
+    const existing = cart.find(i => i.name === p.name && i.uom === p.uom);
+    if(existing) {
+      existing.qty += 1;
+    } else {
+      cart.push({ name: p.name, uom: p.uom, mrp: p.mrp || 0, qty: 1 });
+    }
+    updateCartUI();
+    
+    // Bounce animation
+    const btn = document.getElementById('cart-float');
+    btn.style.transform = 'scale(1.2)';
+    setTimeout(() => btn.style.transform = '', 200);
+  }
+
+  function updateCartUI() {
+    const floatBtn = document.getElementById('cart-float');
+    const badge = document.getElementById('cart-badge');
+    const itemsContainer = document.getElementById('cart-items');
+    const totalEl = document.getElementById('cart-total');
+    
+    if(cart.length > 0) {
+      floatBtn.style.display = 'flex';
+    } else {
+      floatBtn.style.display = 'none';
+      document.getElementById('cart-drawer').classList.remove('open');
+      document.getElementById('cart-overlay').classList.remove('open');
+    }
+    
+    let count = 0;
+    let total = 0;
+    let html = '';
+    
+    cart.forEach((item, index) => {
+      count += item.qty;
+      const price = parseFloat(item.mrp) || 0;
+      total += price * item.qty;
+      
+      html += `
+        <div class="cart-item">
+          <div class="cart-item-info">
+            <div class="cart-item-name">${item.name}</div>
+            <div class="cart-item-price">₹${price.toFixed(2)} / ${item.uom}</div>
+          </div>
+          <div class="cart-qty-controls">
+            <button class="cart-qty-btn" onclick="changeQty(${index}, -1)">-</button>
+            <span style="font-size:14px;font-weight:bold;width:20px;text-align:center;">${item.qty}</span>
+            <button class="cart-qty-btn" onclick="changeQty(${index}, 1)">+</button>
+          </div>
+        </div>
+      `;
+    });
+    
+    badge.innerText = count;
+    itemsContainer.innerHTML = html;
+    totalEl.innerText = '₹ ' + total.toFixed(2);
+  }
+
+  function changeQty(index, delta) {
+    cart[index].qty += delta;
+    if(cart[index].qty <= 0) {
+      cart.splice(index, 1);
+    }
+    updateCartUI();
+  }
+
+  function toggleCartDrawer() {
+    document.getElementById('cart-drawer').classList.toggle('open');
+    document.getElementById('cart-overlay').classList.toggle('open');
+    if (document.getElementById('cart-drawer').classList.contains('open') && cart.length === 0) {
+        document.getElementById('cart-items').innerHTML = '<p style="text-align:center; color:#888; margin-top:20px;">Your cart is empty.</p>';
+    }
+  }
+
+  function checkoutWhatsApp() {
+    if(cart.length === 0) return;
+    
+    let msg = "Hello Janaushadhi Store! I would like to place an order for the following medicines:%0A%0A";
+    let total = 0;
+    
+    cart.forEach((item, i) => {
+      const price = parseFloat(item.mrp) || 0;
+      let lineTotal = price * item.qty;
+      total += lineTotal;
+      // using encodeURIComponent for dynamic details
+      msg += `*${i+1}. ${encodeURIComponent(item.name)}* (${encodeURIComponent(item.uom)})%0A`;
+      msg += `   Qty: ${item.qty} x ₹${price.toFixed(2)} = ₹${lineTotal.toFixed(2)}%0A%0A`;
+    });
+    
+    msg += `*Estimated Total:* ₹${total.toFixed(2)}%0A%0A`;
+    msg += "Please confirm if these are available and when I can pick them up. Thank you!";
+    
+    window.open(`https://wa.me/919898610407?text=${msg}`, '_blank');
   }
 </script>
 </body>
