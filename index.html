@@ -543,10 +543,10 @@
       <div class="hero-badge"><span></span> Government Certified Store • Ajwa Road, Vadodara</div>
       <h1 class="hero-title">
         Quality <span class="accent">Generic Medicines</span><br>
-        at <span class="saffron">90% Less</span> Price
+        at <span class="saffron">Affordable Price</span>
       </h1>
       <p class="hero-desc">
-        Pradhan Mantri Bhartiya Janaushadhi Kendra — providing high-quality, affordable generic medicines certified by the Government of India. Same quality, fraction of the cost.
+        Pradhan Mantri Bhartiya Janaushadhi Kendra — providing high-quality, affordable generic medicines and expert medical consultation by experienced doctors.
       </p>
       <div class="hero-stats">
         <div class="stat"><div class="stat-value">1500+</div><div class="stat-label">Generic Medicines</div></div>
@@ -638,6 +638,34 @@
   </div>
 </div>
 
+<!-- AFFORDABLE GENERIC MEDICINES -->
+<section id="affordable" style="background: var(--gray-50);">
+  <div class="section-inner">
+    <div class="reveal" style="text-align: center; margin-bottom: 52px;">
+      <div class="section-label">Why Us</div>
+      <h2 class="section-title">Affordable Generic Medicines</h2>
+      <p class="section-desc" style="margin: 0 auto;">High-quality, genuine alternatives to expensive branded drugs.</p>
+    </div>
+    <div class="reveal" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 24px;">
+      <div style="background: white; border-radius: 20px; padding: 32px 28px; box-shadow: var(--shadow); border-top: 4px solid var(--green);">
+        <div style="font-size: 36px; margin-bottom: 16px;">🏛️</div>
+        <h3 style="font-family: 'Poppins', sans-serif; font-size: 18px; font-weight: 700; margin-bottom: 10px;">Government-Certified</h3>
+        <p style="font-size: 14px; color: var(--gray-600); line-height: 1.65;">Sourced directly from PMBI-approved manufacturers, ensuring rigorous quality and safety standards.</p>
+      </div>
+      <div style="background: white; border-radius: 20px; padding: 32px 28px; box-shadow: var(--shadow); border-top: 4px solid var(--green);">
+        <div style="font-size: 36px; margin-bottom: 16px;">💯</div>
+        <h3 style="font-family: 'Poppins', sans-serif; font-size: 18px; font-weight: 700; margin-bottom: 10px;">Same Effectiveness</h3>
+        <p style="font-size: 14px; color: var(--gray-600); line-height: 1.65;">Contains the exact same active ingredients as branded alternatives with equal therapeutic potency.</p>
+      </div>
+      <div style="background: white; border-radius: 20px; padding: 32px 28px; box-shadow: var(--shadow); border-top: 4px solid var(--green);">
+        <div style="font-size: 36px; margin-bottom: 16px;">💰</div>
+        <h3 style="font-family: 'Poppins', sans-serif; font-size: 18px; font-weight: 700; margin-bottom: 10px;">Focus on Affordability</h3>
+        <p style="font-size: 14px; color: var(--gray-600); line-height: 1.65;">Making essential healthcare accessible for everyone with market prices up to 90% lower.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- ABOUT -->
 <section id="about">
   <div class="section-inner about-grid reveal">
@@ -690,56 +718,85 @@
     <div class="products-header reveal">
       <div class="section-label">Our Range</div>
       <h2 class="section-title">Medicines & Products Available</h2>
-      <p class="section-desc">From chronic disease management to basic first-aid – we have over 1,500 generic medicines across all major categories.</p>
+      <p class="section-desc">From chronic disease management to basic first-aid – we have over 1,500 generic medicines across all major categories. Click on a category below to view the available products and their verified PMBI prices.</p>
     </div>
+    <style>
+      #products .product-card { cursor: pointer; transition: all 0.3s ease; border: 2px solid transparent; }
+      #products .product-card:hover { transform: translateY(-6px); box-shadow: var(--shadow-hover); border-color: var(--green-light); }
+    </style>
     <div class="products-grid reveal">
-      <div class="product-card">
+      <div class="product-card" onclick="showCategory('Cardiac care')">
         <div class="product-icon">❤️</div>
         <div class="product-name">Cardiac Care</div>
         <div class="product-desc">Heart medications, statins, blood pressure</div>
         <span class="product-tag">Save 85%+</span>
       </div>
-      <div class="product-card">
+      <div class="product-card" onclick="showCategory('Diabetes care')">
         <div class="product-icon">🩸</div>
         <div class="product-name">Diabetes Care</div>
         <div class="product-desc">Metformin, Insulin, sugar control</div>
         <span class="product-tag">Save 80%+</span>
       </div>
-      <div class="product-card">
+      <div class="product-card" onclick="showCategory('Antibiotics')">
         <div class="product-icon">🧬</div>
         <div class="product-name">Antibiotics</div>
         <div class="product-desc">Amoxicillin, Azithromycin, Cetirizine</div>
         <span class="product-tag">Save 90%+</span>
       </div>
-      <div class="product-card">
+      <div class="product-card" onclick="showCategory('Orthopaedic')">
         <div class="product-icon">🦴</div>
         <div class="product-name">Orthopaedic</div>
         <div class="product-desc">Pain relief, calcium, joint care</div>
         <span class="product-tag">Save 75%+</span>
       </div>
-      <div class="product-card">
+      <div class="product-card" onclick="showCategory('Neurological')">
         <div class="product-icon">🧠</div>
         <div class="product-name">Neurological</div>
         <div class="product-desc">Epilepsy, migraine, nerve care</div>
         <span class="product-tag">Save 88%+</span>
       </div>
-      <div class="product-card">
+      <div class="product-card" onclick="showCategory('Paediatric')">
         <div class="product-icon">👶</div>
         <div class="product-name">Paediatric</div>
         <div class="product-desc">Children's medicines, syrups</div>
         <span class="product-tag">Save 70%+</span>
       </div>
-      <div class="product-card">
+      <div class="product-card" onclick="showCategory('Vitamins&Nutrients')">
         <div class="product-icon">🌿</div>
         <div class="product-name">Vitamins & Nutrition</div>
         <div class="product-desc">Supplements, minerals, nutraceuticals</div>
         <span class="product-tag">Save 65%+</span>
       </div>
-      <div class="product-card">
+      <div class="product-card" onclick="showCategory('Surgical items')">
         <div class="product-icon">🩺</div>
         <div class="product-name">Surgical Items</div>
         <div class="product-desc">Gloves, masks, bandages, syringes</div>
         <span class="product-tag">Save 60%+</span>
+      </div>
+      <div class="product-card" onclick="showCategory('Other')">
+        <div class="product-icon">💊</div>
+        <div class="product-name">Other Medicines</div>
+        <div class="product-desc">General medicines, ointments, drops</div>
+        <span class="product-tag">Save 80%+</span>
+      </div>
+    </div>
+    <div id="category-products-container" style="display:none; margin-top: 40px; background:white; padding:30px; border-radius:16px; box-shadow:var(--shadow-lg); border-top:5px solid var(--green);">
+      <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:20px;">
+        <h3 id="category-table-title" style="font-size:24px; color:var(--gray-800); margin:0;">Category Medicines</h3>
+        <button onclick="document.getElementById('category-products-container').style.display='none'" style="background:var(--gray-200);border:none;padding:8px 16px;border-radius:8px;cursor:pointer;font-weight:bold;color:var(--gray-700);">Close ✖</button>
+      </div>
+      <div style="overflow-y:auto; max-height:400px; border:1px solid #eee; border-radius:8px;">
+        <table class="compare-table" style="width:100%; border-collapse:collapse; min-width:600px; margin:0;">
+          <thead style="position:sticky; top:0; background:var(--green-light); z-index:1;">
+            <tr>
+              <th style="padding:14px; text-align:left; border-bottom:2px solid var(--green); color:var(--green-dark);">Drug Name</th>
+              <th style="padding:14px; text-align:left; border-bottom:2px solid var(--green); color:var(--green-dark); width:150px;">Pack Size</th>
+              <th style="padding:14px; text-align:right; border-bottom:2px solid var(--green); color:var(--green-dark); width:120px;">MRP (₹)</th>
+            </tr>
+          </thead>
+          <tbody id="category-table-body">
+          </tbody>
+        </table>
       </div>
     </div>
   </div>
@@ -839,22 +896,22 @@
           <tr>
             <th>Medicine</th>
             <th>🏪 Branded Price</th>
-            <th>💚 Janaushadhi Price</th>
+            <th>💚 Janaushadhi MRP</th>
             <th>💰 You Save</th>
           </tr>
         </thead>
         <tbody>
-          <tr><td>Metformin 500mg (30 tabs)</td><td>₹ 180</td><td>₹ 22</td><td><span class="savings-tag">Save 88%</span></td></tr>
-          <tr><td>Atorvastatin 10mg (10 tabs)</td><td>₹ 135</td><td>₹ 16</td><td><span class="savings-tag">Save 88%</span></td></tr>
-          <tr><td>Amoxicillin 500mg (10 caps)</td><td>₹ 85</td><td>₹ 8</td><td><span class="savings-tag">Save 91%</span></td></tr>
-          <tr><td>Omeprazole 20mg (10 caps)</td><td>₹ 70</td><td>₹ 14</td><td><span class="savings-tag">Save 80%</span></td></tr>
-          <tr><td>Paracetamol 500mg (15 tabs)</td><td>₹ 40</td><td>₹ 5</td><td><span class="savings-tag">Save 88%</span></td></tr>
-          <tr><td>Cetirizine 10mg (10 tabs)</td><td>₹ 55</td><td>₹ 7</td><td><span class="savings-tag">Save 87%</span></td></tr>
-          <tr><td>Amlodipine 5mg (10 tabs)</td><td>₹ 95</td><td>₹ 11</td><td><span class="savings-tag">Save 88%</span></td></tr>
+          <tr><td>Metformin 500mg (10 tabs)</td><td>₹ 60</td><td>₹ 6.19</td><td><span class="savings-tag">Save 90%</span></td></tr>
+          <tr><td>Atorvastatin 10mg (10 tabs)</td><td>₹ 135</td><td>₹ 8.25</td><td><span class="savings-tag">Save 94%</span></td></tr>
+          <tr><td>Amoxicillin 500mg (10 caps)</td><td>₹ 85</td><td>₹ 32.81</td><td><span class="savings-tag">Save 61%</span></td></tr>
+          <tr><td>Omeprazole 20mg (10 caps)</td><td>₹ 70</td><td>₹ 9.28</td><td><span class="savings-tag">Save 86%</span></td></tr>
+          <tr><td>Paracetamol 500mg (10 tabs)</td><td>₹ 26</td><td>₹ 6.56</td><td><span class="savings-tag">Save 75%</span></td></tr>
+          <tr><td>Levocetirizine 10mg (15 tabs)</td><td>₹ 80</td><td>₹ 13.13</td><td><span class="savings-tag">Save 83%</span></td></tr>
+          <tr><td>Amlodipine 5mg (10 tabs)</td><td>₹ 95</td><td>₹ 5.16</td><td><span class="savings-tag">Save 94%</span></td></tr>
         </tbody>
       </table>
     </div>
-    <p style="text-align:center;margin-top:16px;font-size:13px;color:var(--gray-600);">*Prices are approximate market comparisons. Actual savings may vary.</p>
+    <p style="text-align:center;margin-top:16px;font-size:13px;color:var(--gray-600);">*Prices are approximate market comparisons. Actual MRP fetched from PMBI. View more products at <a href="https://janaushadhi.gov.in/" target="_blank" style="color:var(--green);font-weight:600;">janaushadhi.gov.in</a></p>
   </div>
 </section>
 
@@ -956,7 +1013,7 @@
           <div class="info-icon">📍</div>
           <div>
             <h4>Address</h4>
-            <p>Shop No 11, Nand Complex, Ajwa Road,<br>Near Reliance Fresh, Jalram Nagar,<br>Waghodia, Vadodara, Gujarat – 390019</p>
+            <p>Shop No 11, Near Reliance Fresh,<br>Opposite Bapod Garden, Ajwa Waghodia Ring Road,<br>Vadodara, Gujarat – 390019</p>
           </div>
         </div>
         <div class="info-card">
@@ -987,13 +1044,13 @@
             <a href="https://janaushadhi.gov.in" target="_blank">janaushadhi.gov.in</a>
           </div>
         </div>
-        <a href="https://share.google/v41vX2EdZR0LJSzpB" target="_blank" class="btn-primary" style="display:inline-flex;width:fit-content;margin-top:8px;">
+        <a href="https://www.google.com/maps/place/VATSALYA+CLINIC/@22.3253995,73.2463323,17z/data=!4m8!3m7!1s0x395fcf96890c7e53:0x2175f9606ae3e449!8m2!3d22.3253995!4d73.2463323!9m1!1b1!16s%2Fg%2F11c6yzdmtz" target="_blank" class="btn-primary" style="display:inline-flex;width:fit-content;margin-top:8px;">
           🗺️ Get Directions on Google Maps
         </a>
       </div>
       <div class="map-wrap reveal">
         <iframe
-          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3691.72!2d73.2174!3d22.3165!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x395fcff1cf6a5bb3%3A0xab7e7e7e7e7e7e7e!2sNand%20Complex%2C%20Ajwa%20Rd%2C%20Jalram%20Nagar%2C%20Waghodia%2C%20Vadodara%2C%20Gujarat%20390019!5e0!3m2!1sen!2sin!4v1700000000000!5m2!1sen!2sin"
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3691.6!2d73.2463323!3d22.3253995!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x395fcf96890c7e53%3A0x2175f9606ae3e449!2sVATSALYA%20CLINIC!5e0!3m2!1sen!2sin!4v1700000000000!5m2!1sen!2sin"
           allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"
           title="Store Location Map">
         </iframe>
@@ -1016,7 +1073,7 @@
 <!-- FOOTER -->
 <footer>
   <div style="text-align:center;margin-bottom:10px;"><img src="https://janaushadhi.gov.in/img/mini_logo.jpg" alt="Janaushadhi Logo" style="height:50px;border-radius:8px;background:white;padding:4px;" onerror="this.style.display='none'" /></div>
-  <div class="footer-logo">Janaushadhi Store • Ajwa Road, Vadodara</div>
+  <div class="footer-logo">Janaushadhi Store • Ajwa Waghodia Ring Road, Vadodara</div>
   <div class="india-flag">
     <div class="flag-strip" style="background:#FF9933;"></div>
     <div class="flag-strip" style="background:#ffffff;border:1px solid #ccc;"></div>
@@ -1143,5 +1200,48 @@
 </a>
 <div class="wa-tooltip">💬 Chat on WhatsApp</div>
 <div class="toast" id="toast">✅ Message sent! Opening WhatsApp now…</div>
+<script src="products.js"></script>
+<script>
+  function showCategory(catName) {
+    const container = document.getElementById('category-products-container');
+    const tbody = document.getElementById('category-table-body');
+    const title = document.getElementById('category-table-title');
+    
+    if(!PMBI_PRODUCTS || !PMBI_PRODUCTS[catName]) {
+      alert("No products found for this category.");
+      return;
+    }
+    
+    const products = PMBI_PRODUCTS[catName];
+    // Map internal names to display names if needed
+    const displayNames = {
+      "Vitamins&Nutrients": "Vitamins & Nutrition",
+      "Cardiac care": "Cardiac Care",
+      "Diabetes care": "Diabetes Care",
+      "Surgical items": "Surgical Items",
+      "Other": "Other Medicines"
+    };
+    const displayName = displayNames[catName] || catName;
+    
+    title.innerText = displayName + " (" + products.length + " Items)";
+    
+    let html = "";
+    products.forEach(p => {
+      html += `<tr>
+        <td style="padding:12px; border-bottom:1px solid #eee; text-align:left;">${p.name}</td>
+        <td style="padding:12px; border-bottom:1px solid #eee; text-align:left; color:#666;">${p.uom}</td>
+        <td style="padding:12px; border-bottom:1px solid #eee; text-align:right; font-weight:bold; color:var(--green);">₹ ${p.mrp}</td>
+      </tr>`;
+    });
+    
+    tbody.innerHTML = html;
+    container.style.display = 'block';
+    
+    // Smooth scroll offset to show the top of the container
+    const yOffset = -80; 
+    const y = container.getBoundingClientRect().top + window.pageYOffset + yOffset;
+    window.scrollTo({top: y, behavior: 'smooth'});
+  }
+</script>
 </body>
 </html>
