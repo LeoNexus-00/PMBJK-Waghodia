@@ -957,7 +957,7 @@
         <div class="faq-question" onclick="toggleFaq(this)">
           What are the store timings? <span class="faq-arrow">▾</span>
         </div>
-        <div class="faq-answer"><p>We are open Monday through Saturday from 9:00 AM to 9:00 PM. We are closed on national holidays. Please call us for Sunday availability.</p></div>
+        <div class="faq-answer"><p>We are open Monday through Sunday from 10:00 AM to 9:00 PM. We are closed on national holidays.</p></div>
       </div>
     </div>
   </div>
@@ -970,7 +970,7 @@
       <div class="reveal">
         <div class="section-label">Send Inquiry</div>
         <h2 class="section-title">Have a Question or <span style="color:var(--green)">Medicine Request?</span></h2>
-        <p class="section-desc" style="margin-bottom:32px;">Fill the form — we'll respond on WhatsApp within minutes during store hours (Mon–Sat 9AM–9PM).</p>
+        <p class="section-desc" style="margin-bottom:32px;">Fill the form — we'll respond on WhatsApp within minutes during store hours (10 AM to 9 PM).</p>
         <div style="display:flex;flex-direction:column;gap:14px;">
           <div style="display:flex;align-items:center;gap:12px;background:white;border-radius:14px;padding:16px 20px;box-shadow:0 2px 10px rgba(0,0,0,0.06);">
             <span style="font-size:24px;">⚡</span><div><div style="font-weight:700;font-size:14px;">Instant WhatsApp Response</div><div style="font-size:13px;color:var(--gray-600);">We reply within minutes during store hours</div></div>
@@ -1019,14 +1019,14 @@
           <div class="info-icon">📍</div>
           <div>
             <h4>Address</h4>
-            <p>Shop No 11, Near Reliance Fresh,<br>Opposite Bapod Garden, Ajwa Waghodia Ring Road,<br>Vadodara, Gujarat – 390019</p>
+            <p>Shop No 11, Near Reliance Fresh,<br>Opposite Bapod Garden, Ajwa-Waghodia Ring Road,<br>Vadodara, Gujarat – 390019</p>
           </div>
         </div>
         <div class="info-card">
           <div class="info-icon">⏰</div>
           <div>
             <h4>Store Hours</h4>
-            <p>Monday – Sunday: 1:00 PM – 11:00 PM</p>
+            <p>Monday – Sunday: 10:00 AM – 9:00 PM</p>
           </div>
         </div>
         <div class="info-card">
@@ -1050,13 +1050,13 @@
             <a href="https://janaushadhi.gov.in" target="_blank">janaushadhi.gov.in</a>
           </div>
         </div>
-        <a href="https://www.google.com/maps/place/VATSALYA+CLINIC/@22.3253995,73.2463323,17z/data=!4m8!3m7!1s0x395fcf96890c7e53:0x2175f9606ae3e449!8m2!3d22.3253995!4d73.2463323!9m1!1b1!16s%2Fg%2F11c6yzdmtz" target="_blank" class="btn-primary" style="display:inline-flex;width:fit-content;margin-top:8px;">
+        <a href="https://www.google.com/maps/search/?api=1&query=Shop+no+11,+near+Reliance+Fresh,+Opp.+Bapod+Garden,+Ajwa-Waghodia+Ring+Road,+Vadodara" target="_blank" class="btn-primary" style="display:inline-flex;width:fit-content;margin-top:8px;">
           🗺️ Get Directions on Google Maps
         </a>
       </div>
       <div class="map-wrap reveal">
         <iframe
-          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3691.6!2d73.2463323!3d22.3253995!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x395fcf96890c7e53%3A0x2175f9606ae3e449!2sVATSALYA%20CLINIC!5e0!3m2!1sen!2sin!4v1700000000000!5m2!1sen!2sin"
+          src="https://maps.google.com/maps?q=Shop+No+11,+Near+Reliance+Fresh,+Opposite+Bapod+Garden,+Ajwa-Waghodia+Ring+Road,+Vadodara&output=embed"
           allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"
           title="Store Location Map">
         </iframe>
@@ -1068,7 +1068,7 @@
 <!-- CTA BANNER -->
 <section id="cta">
   <h2>Start Saving on Medicines Today! 💊</h2>
-  <p>Join thousands of Vadodara families who are already saving up to 90% on their monthly medicine bills.<br>Call us: <strong>+91 98986 10407</strong> | Mon – Sat: 9 AM – 9 PM</p>
+  <p>Join thousands of Vadodara families who are already saving up to 90% on their monthly medicine bills.<br>Call us: <strong>+91 98986 10407</strong> | 10 AM – 9 PM</p>
   <div class="cta-btns">
     <a href="tel:+919898610407" class="btn-primary">📞 Call Now</a>
     <a href="#contact" class="btn-secondary">📍 Find Our Store</a>
@@ -1079,7 +1079,7 @@
 <!-- FOOTER -->
 <footer>
   <div style="text-align:center;margin-bottom:10px;"><img src="https://janaushadhi.gov.in/img/mini_logo.jpg" alt="Janaushadhi Logo" style="height:50px;border-radius:8px;background:white;padding:4px;" onerror="this.style.display='none'" /></div>
-  <div class="footer-logo">Janaushadhi Store • Ajwa Waghodia Ring Road, Vadodara</div>
+  <div class="footer-logo">Janaushadhi Store • Ajwa-Waghodia Ring Road, Vadodara</div>
   <div class="india-flag">
     <div class="flag-strip" style="background:#FF9933;"></div>
     <div class="flag-strip" style="background:#ffffff;border:1px solid #ccc;"></div>
@@ -1341,21 +1341,21 @@
     
     let html = "";
     if(results.length === 0) {
-      html = \`<tr><td colspan="4" style="padding:20px; text-align:center; color:#888;">No medicines found matching "\${query}".</td></tr>\`;
+      html = `<tr><td colspan="4" style="padding:20px; text-align:center; color:#888;">No medicines found matching "${query}".</td></tr>`;
     } else {
       results.forEach(res => {
         const {p, cat, index} = res;
         const priceText = p.mrp ? ('₹ ' + parseFloat(p.mrp).toFixed(2)) : 'N/A';
-        html += \`<tr>
+        html += `<tr>
           <td style="padding:12px; border-bottom:1px solid #eee; text-align:left; color:var(--gray-800); font-weight:500;">
-             \${p.name} <span style="display:block; font-size:11px; color:#aaa; margin-top:4px;">\${cat}</span>
+             ${p.name} <span style="display:block; font-size:11px; color:#aaa; margin-top:4px;">${cat}</span>
           </td>
-          <td style="padding:12px; border-bottom:1px solid #eee; text-align:left; color:#666; font-size:13px;">\${p.uom}</td>
-          <td style="padding:12px; border-bottom:1px solid #eee; text-align:right; font-weight:bold; color:var(--green);">\${priceText}</td>
+          <td style="padding:12px; border-bottom:1px solid #eee; text-align:left; color:#666; font-size:13px;">${p.uom}</td>
+          <td style="padding:12px; border-bottom:1px solid #eee; text-align:right; font-weight:bold; color:var(--green);">${priceText}</td>
           <td style="padding:12px; border-bottom:1px solid #eee; text-align:center;">
-            <button onclick="addToCart('\${cat}', \${index})" style="background:var(--green);color:white;border:none;padding:8px 14px;border-radius:8px;cursor:pointer;font-size:13px;font-weight:bold;transition:0.2s;box-shadow:0 2px 5px rgba(34,197,94,0.3);" onmouseover="this.style.background='var(--green-dark)'" onmouseout="this.style.background='var(--green)'">+ Add</button>
+            <button onclick="addToCart('${cat}', ${index})" style="background:var(--green);color:white;border:none;padding:8px 14px;border-radius:8px;cursor:pointer;font-size:13px;font-weight:bold;transition:0.2s;box-shadow:0 2px 5px rgba(34,197,94,0.3);" onmouseover="this.style.background='var(--green-dark)'" onmouseout="this.style.background='var(--green)'">+ Add</button>
           </td>
-        </tr>\`;
+        </tr>`;
       });
     }
     
